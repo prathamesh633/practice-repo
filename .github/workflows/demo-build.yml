@@ -6,25 +6,25 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.11, 3.12, 3.13]
+        version: [3.11, 3.12, 3.13]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.version }}
         uses: actions/setup-python@v4
         with:
-          ${{ mpython-version: atrix.python-version }}
+          python-version: ${{ matrix.version }}
 
       - name: List files
         run: ls -l
 
       - name: Run hello.py and save output
         run: |
-          python hello.py > output-${{ matrix.python-version }}.txt
+          python hello.py > output-${{ matrix.version }}.txt
 
       - name: Upload hello.py output as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: hello-output-${{ matrix.python-version }}
-          path: output-${{ matrix.python-version }}.txt
+          name: hello-output-${{ matrix.version }}
+          path: output-${{ matrix.version }}.txt
