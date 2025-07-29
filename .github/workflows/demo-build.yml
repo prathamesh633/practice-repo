@@ -1,30 +1,57 @@
-on: [push, pull_request]
+# on: [push, pull_request]
 
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         version: [3.11, 3.12, 3.13]
+
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Set up Python ${{ matrix.version }}
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: ${{ matrix.version }}
+
+#       - name: List files
+#         run: ls -l
+
+#       - name: Run hello.py and save output
+#         run: |
+#           python hello.py > output-${{ matrix.version }}.txt
+
+#       - name: Upload hello.py output as artifact
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: hello-output-${{ matrix.version }}
+#           path: output-${{ matrix.version }}.txt
+
+
+on: [push]
 jobs:
   build:
+
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        version: [3.11, 3.12, 3.13]
-
     steps:
-      - uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.version }}
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: List files
-        run: ls -l
+    - name: list files
+      run: |
+        ls -l
 
-      - name: Run hello.py and save output
-        run: |
-          python hello.py > output-${{ matrix.version }}.txt
 
-      - name: Upload hello.py output as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: hello-output-${{ matrix.version }}
-          path: output-${{ matrix.version }}.txt
+    - name: Run hello.py and save output
+      run:
+          python hello.py > output.txt
+
+
+    - name: uplod hello.py output as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: hello-output
+        path: output.txt
