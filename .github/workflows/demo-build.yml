@@ -45,16 +45,16 @@ jobs:
         ls -l
 
 
-  #   - name: Run hello.py and save output
-  #     run:
-  #         python hello.py > output.txt
+    - name: Run hello.py and save output
+      run:
+          python hello.py > output.txt
 
 
-  #   - name: uplod hello.py output as artifact
-  #     uses: actions/upload-artifact@v4
-  #     with:
-  #       name: hello-output
-  #       path: output.txt
+    - name: uplod hello.py output as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: hello-output
+        path: output.txt
 
   # another-build:
   #   runs-on: ubuntu-latest
