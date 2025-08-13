@@ -55,3 +55,14 @@ jobs:
       with:
         name: hello-output
         path: output.txt
+
+  another-build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: list files
+      run: |
+        ls -l
